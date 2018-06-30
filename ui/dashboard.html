@@ -7,21 +7,26 @@
     </head>
     <body>
         <nav class="navbar navbar-dark bg-dark sticky-top flex-md-nowrap p-0">
-            <a href="dashboard.html" class="col-lg-2">BYSN</a>
+            <a href="dashboard.html" class="navbar-brand py-0 mr-0 col-lg-2">BYSN</a>
             <input type="search" name="search" placeholder="Search..." class="form-control" />
             <a href="#" class="px-3">Logout</a>
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-lg-2 pt-3 menu">
-                    <div>
-                        <ul>
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Reports</a></li>
-                            <li><a href="#">Settings</a></li>
+                <aside class="col-lg-2 menu">
+                    <nav class="pt-2">
+                        <ul class="nav">
+                            <li><a class="nav-item pl-5 pr-3 py-2 dashboard active" href="#">Dashboard</a></li>
+                            <li><a class="nav-item pl-5 pr-3 py-2" href="#">Reports</a></li>
+                            <li>
+                                <a class="nav-item pl-5 pr-3 py-2 disabled" href="#">Settings</a>
+                                <ul class="nav submenu">
+                                    <li><a class="nav-item pr-3 py-2 disabled" href="#">Users</a>
+                                </ul>
+                            </li>
                         </ul>
-                    </div>
-                </nav>
+                    </nav>
+                </aside>
                 <main class="ml-sm-auto col-lg-10 pt-3 px-4">
                     Document Body
                 </main>

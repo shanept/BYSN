@@ -22,7 +22,9 @@ nav.navbar .form-control {
     height: 3rem;
     border: none;
     border-radius: 0;
-    transition: all 0.5s ease-in-out;
+    transition: color 0.5s ease-in-out,
+                background 0.5s ease-in-out,
+                border 0.5s ease-in-out;
 }
 
 nav.navbar-dark .form-control {
@@ -49,7 +51,7 @@ nav.navbar input::placeholder {
     color: #333333;
 }
 
-nav.menu {
+aside.menu {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -57,14 +59,35 @@ nav.menu {
     height: 100vh;
     padding: 0;
     background: #f4faff;
+    border-right: 1px solid #E8EDF2;
 }
 
-nav.menu > div {
+aside.menu > nav {
     position: -webkit-sticky;
     position: sticky;
     margin-top: 3rem;
 }
 
-nav.menu ul {
-    list-style: none;
+ul.nav li,
+.nav .nav-item {
+    display: block;
+    width: 100%;
+}
+
+.nav .nav-item {
+    background-color: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease-in-out;
+}
+
+.nav .nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav .submenu .nav-item {
+    font-size: 0.93em;
+    padding-left: 4rem !important;
+}
+
+.nav-item.dashboard {
+    background: url("feather.svg#server") no-repeat;
 }

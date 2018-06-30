@@ -1,4 +1,7 @@
 <?php
+    // width/height
+    $wh = 18;
+
     $ids = [
         'activity', 'airplay', 'alert-circle', 'alert-octagon', 'alert-triangle', 'align-center',
         'align-justify', 'align-left', 'align-right', 'anchor', 'aperture', 'archive', 'arrow-down-circle',
@@ -32,23 +35,34 @@
         'volume-x', 'volume', 'watch', 'wifi-off', 'wifi', 'wind', 'x-circle', 'x-square', 'x', 'youtube',
         'zap-off', 'zap', 'zoom-in', 'zoom-out',
     ];
-?>
+
+    $header = <<<'EOL'
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="16"
-  height="<?php echo count($ids) * 17; ?>"
+  width="%d"
+  height="%d"
   fill="none"
   stroke="currentColor"
   stroke-width="2"
   stroke-linecap="round"
   stroke-linejoin="round">
-<?php
+
+EOL;
+
+    $contents = file_get_contents('feather-sprite.svg');
+    $start = strpos($contents, '<defs>');
+    $len   = strpos($contents, '</defs>') + 7 - $start;
+
+    $height = count($ids) * $wh;
+    $fp = fopen('feather.svg', 'w');
+    fwrite($fp, sprintf($header, $wh, $height));
+    fwrite($fp, sprintf("    %s\n", substr($contents, $start, $len)));
+
     for ($i = 0; $i < count($ids); $i++) {
-        printf('    <view id="%s" viewBox="0 %d 16 16" />' . PHP_EOL,
-                $ids[$i], ($i * 17));
+        fwrite($fp, sprintf('    <view id="icon-%1$s" viewBox="0 %2$d %3$s %3$s" />' . PHP_EOL,
+                $ids[$i], ($i * $wh), $wh));
+        fwrite($fp, sprintf('    <use xlink:href="#%1$s" width="%3$s" height="%3$s" x="0" y="%2$d" id="%1$s-use"></use>' . PHP_EOL,
+            $ids[$i], ($i * $wh), $wh));
     }
-    for ($i = 0; $i < count($ids); $i++) {
-        printf('    <use xlink:href="feather-sprite.svg#%1$s" width="16" height="16" x="0" y="%2$d" id="%1$s-use"></use>' . PHP_EOL,
-            $ids[$i], ($i * 17));
-    }
-?>
-</svg>
+
+    fwrite($fp, '</svg>');
+    fclose($fp);

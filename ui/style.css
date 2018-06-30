@@ -60,12 +60,29 @@ aside.menu {
     padding: 0;
     background: #f4faff;
     border-right: 1px solid #E8EDF2;
+    box-shadow: inset -5px 0px 56px -30px rgba(0, 0, 0, 0.4);
 }
 
 aside.menu > nav {
     position: -webkit-sticky;
     position: sticky;
     margin-top: 3rem;
+}
+
+aside.menu .product {
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+aside.menu .product > * {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    color: #BBBBBB;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 ul.nav li,
@@ -75,12 +92,40 @@ ul.nav li,
 }
 
 .nav .nav-item {
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
     background-color: rgba(0, 0, 0, 0);
-    transition: background 0.5s ease-in-out;
+    transition: background 0.2s ease-in-out;
+}
+
+.nav-item {
+    position: relative;
 }
 
 .nav .nav-item:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(50, 50, 50, 0.1);
+}
+
+a.nav-item.active {
+    background-color: white;
+    border-top: 1px solid #E8EDF2;
+    border-bottom: 1px solid #E8EDF2;
+}
+
+a.nav-item.active::after {
+    position: absolute;
+    right: -1px;
+    height: 100%;
+    background-color: white;
+    width: 1px;
+    content: '';
+    top: 0;
+    transition: background 0.2s ease-in-out;
+}
+
+.nav .nav-item.active:hover,
+.nav .nav-item.active:hover::after {
+    background-color: #E6EBF0;
 }
 
 .nav .submenu .nav-item {
@@ -88,6 +133,41 @@ ul.nav li,
     padding-left: 4rem !important;
 }
 
-.nav-item.dashboard {
-    background: url("feather.svg#server") no-repeat;
+.nav-item::before {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    margin-top: -0.5rem;
+    opacity: 0.6;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.submenu .nav-item::before {
+    left: 2.5rem;
+}
+
+.nav-item.dashboard::before {
+    background-image: url("feather.svg#icon-server");
+}
+
+.nav-item.report::before {
+    background-image: url("feather.svg#icon-file-text");
+}
+
+.nav-item.settings::before {
+    background-image: url("feather.svg#icon-sliders");
+}
+
+.nav-item.users::before {
+    background-image: url("feather.svg#icon-users");
+}
+
+.nav-item.logout::before {
+    background-image: url("feather.svg#icon-log-out");
 }
